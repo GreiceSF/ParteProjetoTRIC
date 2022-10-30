@@ -1,0 +1,42 @@
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.IterableUtils;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class agenciaserviceImpl implements agenciaService {
+
+    @Override
+    public List<Agencia> list(String nome) {
+        return IterableUtils.toList(enviaemailRepository.findAll());
+    }
+
+    @Override
+    @Transactional
+    public Agencia save(Agencia agencia) {
+        return enviaemailRepository.save(Agencia);
+    }
+
+    @Override
+    public Agencia getById(Integer id) {
+        return list.stream().filter(Agencia -> Agencia.getId().equals(id)).findFirst().orElseGet(null);
+    }
+
+    @Override
+    public Agencia update(Integer id, Agencia agencia) {
+        Agencia.setId(id);
+        int index = list.indexOf(Agencia);
+        return list.set(index, Agencia);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        Agencia agenciao = new Agencia ();
+        Agencia.setId(id);
+        list.remove(Agencia);
+
+    }
+}
