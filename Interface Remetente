@@ -1,0 +1,16 @@
+package com.equipeturma862.cadastronf.service;
+
+
+import com.equipeturma862.cadastronf.domain.Remetente;
+
+
+import java.util.List;
+
+public interface RementeService {
+
+    List<Remetente> list(String nome);
+    Remetente save(Remetente remetente, String CNPJ, String razaoSocial, String telefone);
+    Remetente getById(Integer id);
+    Remetente update(Integer id, Remetente remetente);
+    void delete(Integer id);
+}
