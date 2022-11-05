@@ -1,0 +1,43 @@
+package com.equipeturma862.cadastronf.service;
+
+import com.equipeturma862.cadastronf.domain.Remetente;
+import com.equipeturma862.cadastronf.repository.RemetenteRepository;
+import org.apache.commons.collections4.IterableUtils;
+
+import java.util.List;
+
+public class RemetenteServiceImpl implements RementeService{
+
+    private final RemetenteRepository remetenteRepository;
+
+    public RemetenteServiceImpl(RemetenteRepository remetenteRepository) {
+        this.remetenteRepository = remetenteRepository;
+    }
+
+
+    @Override
+    public List<Remetente> list(String nome) {
+        return IterableUtils.toList(remetenteRepository.findAll());
+    }
+
+    @Override
+    public Remetente save(Remetente remetente, String CNPJ, String razaoSocial, String telefone) {
+        return remetenteRepository.save(remetente);
+    }
+
+    @Override
+    public Remetente getById(Integer id) {
+        return remetenteRepository.findById(id).get();
+    }
+
+    @Override
+    public Remetente update(Integer id, Remetente remetente) {
+        remetente.setId(Long.valueOf(id));
+        return remetenteRepository.save(remetente);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        remetenteRepository.deleteById(id);
+    }
+}
